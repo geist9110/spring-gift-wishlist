@@ -2,7 +2,6 @@ package gift.user;
 
 import gift.exception.FailedLoginException;
 import gift.token.JwtProvider;
-import gift.token.Token;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +18,7 @@ public class MemberService {
         this.jwtProvider = jwtProvider;
     }
 
-    public Token register(Member member) {
+    public String register(Member member) {
         if (memberRepository.existMemberByEmail(member.email())) {
             throw new IllegalArgumentException("User already exists");
         }
@@ -28,7 +27,7 @@ public class MemberService {
         return jwtProvider.generateToken(member);
     }
 
-    public Token login(Member member) {
+    public String login(Member member) {
         if (!memberRepository.existMemberByEmail(member.email())) {
             throw new FailedLoginException("User does not exist");
         }
