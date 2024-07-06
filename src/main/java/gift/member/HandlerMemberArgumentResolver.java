@@ -1,7 +1,7 @@
 package gift.member;
 
 
-import com.github.dockerjava.api.exception.UnauthorizedException;
+import gift.exception.TokenNotFoundException;
 import gift.token.JwtProvider;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.MethodParameter;
@@ -36,7 +36,7 @@ public class HandlerMemberArgumentResolver implements HandlerMethodArgumentResol
         HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
         String token = request.getHeader("Authorization");
         if (token == null) {
-            throw new UnauthorizedException("Unauthorized");
+            throw new TokenNotFoundException("Token not found");
         }
         Member member = jwtProvider.getMemberFromToken(token);
         memberService.authenticateMember(member);
