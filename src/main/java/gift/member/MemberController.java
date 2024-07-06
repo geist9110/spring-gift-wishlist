@@ -23,7 +23,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void login(@Valid @RequestBody Member member, HttpServletResponse response) {
+    public void login(@Valid @MemberResolver Member member, HttpServletResponse response) {
         response.setHeader("Authorization", memberService.login(member));
     }
 }
