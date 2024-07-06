@@ -1,7 +1,7 @@
 package gift.wishlist;
 
-import gift.user.Member;
-import gift.user.MemberResolver;
+import gift.member.Member;
+import gift.member.MemberResolver;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

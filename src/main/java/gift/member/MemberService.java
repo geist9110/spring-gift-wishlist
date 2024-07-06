@@ -1,4 +1,4 @@
-package gift.user;
+package gift.member;
 
 import gift.exception.FailedLoginException;
 import gift.token.JwtProvider;
@@ -32,9 +32,9 @@ public class MemberService {
             throw new FailedLoginException("User does not exist");
         }
 
-        Member findUser = memberRepository.findMemberByEmail(member.email());
+        Member findMember = memberRepository.findMemberByEmail(member.email());
 
-        if (!findUser.password().equals(member.password())) {
+        if (!findMember.password().equals(member.password())) {
             throw new FailedLoginException("Wrong password");
         }
 
