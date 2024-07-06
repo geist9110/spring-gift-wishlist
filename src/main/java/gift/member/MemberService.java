@@ -31,13 +31,7 @@ public class MemberService {
         if (!memberRepository.existMemberByEmail(member.email())) {
             throw new FailedLoginException("User does not exist");
         }
-
-        Member findMember = memberRepository.findMemberByEmail(member.email());
-
-        if (!findMember.password().equals(member.password())) {
-            throw new FailedLoginException("Wrong password");
-        }
-
+        member.isAuthentication(memberRepository.findMemberByEmail(member.email()));
         return jwtProvider.generateToken(member);
     }
 }
